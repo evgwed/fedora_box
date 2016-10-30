@@ -1,0 +1,4 @@
+project/*
+!.gitkeep
+vagrant/Vagrantfile
+vagrant/.vagrant
