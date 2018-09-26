@@ -1,7 +1,6 @@
 Vagrant.configure("2") do |config|
   
   config.vm.box = "bento/fedora-24"
-  config.vm.box_url = "https://atlas.hashicorp.com/bento/boxes/fedora-24/versions/2.3.0/providers/virtualbox.box"
   config.vm.box_check_update = false
   config.vm.hostname = "bars"
 
