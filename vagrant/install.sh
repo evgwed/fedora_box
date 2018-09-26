@@ -1,5 +1,7 @@
 #!/bin/bash
-sudo dnf install -y httpd php php-devel php-xml php-gd php-pgsql php-mbstring php-zip php-pear gcc sshpass wkhtmltopdf xorg-x11-server-Xvfb liberation-* libpng12 git
+sudo dnf install -y httpd php php-devel php-xml php-gd php-pgsql php-mbstring php-zip php-pear
+sudo dnf install -y gcc sshpass git wkhtmltopdf liberation-* libpng12 
+sudo dnf install -y xorg-x11-server-Xvfb
 export PHP_DTRACE=yes
 sudo pecl install -y oci8-2.0.12
 
@@ -10,13 +12,12 @@ sudo cp /vagrant/conf/selinux/config /etc/selinux/config
 
 sudo setenforce 0
 
-chown -R vagrant:vagrant /var/www/html/
 
 cp /vagrant/ssh-keys/id_rsa.pub ~/.ssh/
 cp /vagrant/ssh-keys/id_rsa ~/.ssh/
-cp /vagrant/ssh-keys/id_rsa.pub /root/.ssh/
-cp /vagrant/ssh-keys/id_rsa /root/.ssh/
-cp /vagrant/ssh-keys/known_hosts /root/.ssh/
+sudo mkdir /root/.ssh/
+sudo cp /vagrant/ssh-keys/id_rsa.pub /root/.ssh/
+sudo cp /vagrant/ssh-keys/id_rsa /root/.ssh/
 sudo chmod -R 0700 /root/.ssh/
 
 rm -rf /var/www/html/mis
@@ -38,4 +39,11 @@ chown vagrant:vagrant /var/www/html/mis/d3/temp
 
 sudo cp /vagrant/additions/wkhtmltopdf /usr/bin/wkhtmltopdf
 
-xvfb-run -a /usr/bin/wkhtmltopdf /vagrant/additions/file.html /vagrant/file.pdf
+sudo cp /vagrant/conf/mis/Etc/conf.inc /var/www/html/mis/Etc/conf.inc
+sudo cp /vagrant/conf/mis/d3/Etc/conf.inc /var/www/html/mis/d3/Etc/conf.inc
+
+sudo chown -R vagrant:vagrant /var/www/html/
+
+sudo systemctl restart httpd
+# xvfb-run -a /usr/bin/wkhtmltopdf /vagrant/additions/file.html /var/www/html/file.pdf
+
