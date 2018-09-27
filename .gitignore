@@ -2,5 +2,4 @@ project/*
 !.gitkeep
 vagrant/Vagrantfile
 vagrant/.vagrant
-vagrant/ssh-keys/*
-!vagrant/ssh-keys/known_hosts
+.idea

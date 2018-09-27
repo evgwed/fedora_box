@@ -12,35 +12,17 @@ sudo cp /vagrant/conf/selinux/config /etc/selinux/config
 
 sudo setenforce 0
 
-
-cp /vagrant/ssh-keys/id_rsa.pub ~/.ssh/
-cp /vagrant/ssh-keys/id_rsa ~/.ssh/
-sudo mkdir /root/.ssh/
-sudo cp /vagrant/ssh-keys/id_rsa.pub /root/.ssh/
-sudo cp /vagrant/ssh-keys/id_rsa /root/.ssh/
-sudo chmod -R 0700 /root/.ssh/
-
-rm -rf /var/www/html/mis
-git clone ssh://git@stash.bars-open.ru:7999/med/mis-out.git /var/www/html/mis
-git clone ssh://git@stash.bars-open.ru:7999/med/mis_d3.git /var/www/html/mis/d3
-mkdir /var/www/html/mis/d3/Extensions
-git clone ssh://git@stash.bars-open.ru:7999/med/mis_d3ext.git /var/www/html/mis/d3/Extensions/mis
-
+sudo dnf install -y libaio
 sudo rpm -ivh /vagrant/additions/oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm
 sudo rpm -ivh /vagrant/additions/oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm
 
 sudo echo "extension=oci8.so" >> /etc/php.ini
 sudo echo "extension=oci8.so" >> /etc/php.d/oci.ini
 
-mkdir /var/www/html/mis/temp
-mkdir /var/www/html/mis/d3/temp
 chown vagrant:vagrant /var/www/html/mis/temp/
 chown vagrant:vagrant /var/www/html/mis/d3/temp
 
 sudo cp /vagrant/additions/wkhtmltopdf /usr/bin/wkhtmltopdf
-
-sudo cp /vagrant/conf/mis/Etc/conf.inc /var/www/html/mis/Etc/conf.inc
-sudo cp /vagrant/conf/mis/d3/Etc/conf.inc /var/www/html/mis/d3/Etc/conf.inc
 
 sudo chown -R vagrant:vagrant /var/www/html/
 

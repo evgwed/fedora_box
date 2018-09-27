@@ -8,7 +8,7 @@ $ConfigOptions = array(
     'debug' => 1,
     'TempDir' => 'temp/',
     'help_conf' => 'Etc/help.inc',
-    'openssl' => 'C:\OpenSSL-Win64\bin\openssl.exe',
+    'openssl' => '/usr/bin/openssl',
     'FilesDir' => 'Files/',
     'XlsCharset' => 'windows-1251',
     'Forms' => '/Forms/',
@@ -17,11 +17,11 @@ $ConfigOptions = array(
     'RecipsBarCodesFontPath' => 'Modules/Recips/PDF417Font.ttf',
 
     'wkhtmltopdf' => array(
-        'binpath'   => 'C:/Program Files/wkhtmltopdf/bin/', // путь до директории с исполняющими файлам программы
-        'binfile'   => 'wkhtmltopdf.exe', // имя исполняющего файла
+        'binpath'   => '/usr/bin/', // путь до директории с исполняющими файлам программы
+        'binfile'   => 'wkhtmltopdf', // имя исполняющего файла
         'binprefix' => 'env LANG=ru_RU.UTF-8' //
     ),
-    'Exec7z' => 'C:\Program Files\7-Zip\7z.exe',
+    'Exec7z' => '/usr/bin/zip',
     'zint' => 'zint',
     'Theme' => (isset($_GET["theme"])) ? $_GET["theme"] : 'bars',
     'design_mode' => 0,

@@ -3,18 +3,31 @@
 ### Инструкция по настройке
 
 
-
+* склонировать репозиторий командой `git clone https://github.com/evgwed/fedora_box.git bars --config core.autocrlf=false` и `cd bars`
 * сгенерировать ключ для аботы с stash по ssh командой `ssh-keygen -t rsa -b 4096 -C "ваша почта@simbirsoft.com"` https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 Должны быть созданы файлы id_rsa и id_rsa.pub в папке `~/.ssh/`
-* Скопиировать эти файли в папку `vagrant/ssh-keys/`, чтобы они скопировались в машину
 * Добавить содержимое(открыть в блокноте и скопировать) `id_ras.pub` в stash по ссылке (https://stash.bars-open.ru/plugins/servlet/ssh/account/keys/add)
 * Перейти в папку `vagrant` и выполнить команду `cp Vagrantfile.example Vagrantfile`
 *  Выполнить команду запуска машины и дождаться завершения установки `vagrant up`
-*  Зайти в машину `vagrant ssh` и выполнить команду `cd /vagrant` и потом  `sudo sh install.sh` (везде отвечать yes/enter в ходе установки)
+*  Перезапустить машину, выполнив команду `vagrant reload`
+*  Зайти в машину `vagrant ssh` и внутри выполнить команду `cd /vagrant` и  `sudo sh install.sh` (везде отвечать yes/enter в ходе установки)
 *  выйти из машины `exit`
+* Выполнить следующие команды:
+```
+cd ../project
+git clone ssh://git@stash.bars-open.ru:7999/med/mis-out.git mis
+git clone ssh://git@stash.bars-open.ru:7999/med/mis_d3.git mis/d3
+mkdir mis/d3/Extensions
+git clone ssh://git@stash.bars-open.ru:7999/med/mis_d3ext.git mis/d3/Extensions/mis
+mkdir mis/temp
+mkdir mis/d3/temp
+cp ../vagrant/conf/mis/Etc/conf.inc mis/Etc/conf.inc
+cp ../vagrant/conf/mis/d3/Etc/conf.inc mis/d3/Etc/conf.inc
+```
 *  Перезапустить машину, выполнив команду `vagrant reload`
 *  Добавить в файл `hosts` строку `192.168.100.103 bars.test`
 * Открыть в браузере http://bars.test/mis и убедиться, что открылась страница авторизации в системе
+
  
  ### Возможные ошибки
 
